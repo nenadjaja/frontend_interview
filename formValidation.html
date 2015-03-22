@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bannerocity - Personalized Online Sky Banners</title>
+    <link rel="stylesheet" type="text/css" href="bannerocity.css">
+    <script type="text/javascript">
+    /* Validation of different field elements */
+      function validateRegEx(regex,inputStr,helpText,helpMessage) {
+        //see if input string data validates OK
+        if (!regex.test(inputStr)) {
+          //the data is invalid, set the help message
+          if (helpText != null)
+            helpText.innerHTML = helpMessage;
+          return false;
+        }
+        else {
+          //the data is OK, clear the help message
+          if (helpText != null) 
+            helpText.innerHTML = "";
+          return true;  
+        }
+      } //end of function validateRegEx
+
+      function validateNonEmpty(inputField,helpText) {
+        //see if the input value contains any text
+        if (inputField.value.length == 0) {
+          //data is invalid -> set the help message
+          if (helpText != null)
+            helpText.innerHTML = "Please enter a value";
+          return false;
+        }
+        else {
+          //data is ok, so clear the help message
+          if (helpText != null)
+            helpText.innerHTML = "";
+          return true;
+        }
+      } // end of funciton validateNonEmpty
+
+      function validateDate(inputField,helpText) {
+        //first see if the input value contains data
+        if (!validateNonEmpty(inputField,helpText))
+          return false;
+        //then see if the input value is a date
+        var regex = /^\d{2}\/\d{2}\/\d{4}&/;
+        var helpMsg = "Please enter a date in MM/DD/YYYY format";
+        return validateRegEx(regex,inputField.value,helpText,helpMsg);
+      } // end of function validateDate
+
+      function validatePhone(inputField,helpText) {
+        //first see if the input value contains data
+        if (!validateNonEmpty(inputField,helpText))
+          return false;
+        //then see if the input value is a date
+        var regex = /^\d{3}-\d{3}-\d{4}&/;
+        var helpMsg = "Please enter a phone number in form ###-###-####";
+        return validateRegEx(regex,inputField.value,helpText,helpMsg);
+      } // end of function validatePhone
+      
+      function validateLength(minLength,maxLength,inputField,helpText) {
+        if (inputField.value.length < minLength || inputField.length > maxLength) {
+          //data is incorrect -> less than 1 char length or more than 32
+          if (helpText != null)
+            helpText.innerHTML = "Please enter a value " +minLength+ " to "+ maxLength+ " characters in length.";
+          return false;
+        }
+        else {
+          if (helpText != null)
+            helpText.innerHTML = "";
+          return true;
+        }
+      } //end of function validateLength
+      function validateZIPCode(inputField,helpText) {
+        //first see if the input value length is anything other than 5
+        if (inputField.value.length != 5) {
+          //the data is invalid, so set the help message
+          if (helpText != null)
+            helpText.innerHTML = "Please enter exactly five digits.";
+          return false;
+        }
+        //then see if the input value is a number
+        else if (isNaN(inputField.value)) {
+          //the data is invalid, set the help message
+          if (helpText != null)
+            helpText.innerHTML = "Please enter a number.";
+          return false;
+        }
+        else {
+          //the data is ok, clear the help field
+          if (helpText != null)
+            helpText.innerHTML = "";
+          return true;
+        }
+      } // end of function validateZIPCode
+      //validate before submittin (onclick submit button)
+      function placeOrder(form) {
+        if (validateLength(1,32,form["message"],form["message_help"]) &&
+            validateZIPCode(form["zipcode"],form["zipcode_help"]) &&
+            validateNonEmpty(form["date"],form["date_help"]) &&
+            validateNonEmpty(form["name"],form["name_help"]) &&
+            validateNonEmpty(form["phone"],form["phone_help"]) &&
+            validateNonEmpty(form["email"],form["email_help"])) {
+              //submit the order to the server
+              form.submit();
+        }
+        else {
+          alert("I am sorry but there is something wrong with the order information.");
+        }
+      } // end of funciton placeOrder
+    </script>
+  </head>
+  <body>
+    <div class="heading">
+      <img id="logo" src="logo.png" alt="Bannerocity">
+    </div>
+    
+    <form name="orderform" action="bannerocity.php" method="post">
+      <div class="field">
+        Enter the banner message:
+        <input id="message" name="message" type="text" size="32" 
+        onblur="validateLength(1,32,  this,document.getElementById('message_help'));"/>
+        <!-- for setting up notification if data not entered (instead of alert box) -->
+        <span id="message_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter ZIP code of the location:
+        <input id="zipcode" name="zipcode" type="text" size="5" 
+        onblur="validateZIPCode(this,document.getElementById('zipcode_help'));"/>
+        <span id="zipcode_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter the date for the message to be shown:
+        <input id="date" name="date" type="text" size="10" 
+        onblur="validateDate(this,document.getElementById('date_help'));"/>
+        <span id="date_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter your name:
+        <input id="name" name="name" type="text" size="32"
+        onblur="validateNonEmpty(this,document.getElementById('name_help'));"/>
+        <span id="name_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter your phone number:
+        <input id="phone" name="phone" type="text" size="12"
+        onblur="validatePhone(this,document.getElementById('phone_help'));"/>
+        <span id="phone_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter your email address:
+        <input id="email" name="email" type="text" size="32"
+        onblur="validateNonEmpty(this,document.getElementById('email_help'));"/>
+        <span id="email_help" class="help"></span>
+      </div>
+      <input type="button" value="Order Banner" onclick="placeOrder(this.form);"/>
+    </form>
+  </body>
+</html>

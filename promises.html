@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Learn JS promises</title>
+		<script type="text/javascript" src="lib/jquery-1.11.2.min.js"></script>
+	</head>
+	<body>
+		<div id="promise"> Test</div>
+		<script type="text/javascript">
+			$('#promise').text("Promise");
+			// shorthand for Ajax GET http request
+			// $.getJSON('http://hipsterjesus.com/api/', function(data) {
+			// 	console.log(data);
+			// 	$('body').append(data.text);
+			// });
+
+			// another way of writing this would be with promises
+			var promise = $.getJSON('http://hipsterjesus.com/api/');
+			// attach 'done' handler
+			promise.done(function(data) {
+				console.log(data);
+				$('body').append(data.text);
+			})
+			// attach 'fail' handler
+			.fail(function(error) {
+				$('body').append('<p>Oooops. Something went wrong.</p>');
+			});
+			// attach 'always' handler, gets called regardless of successful or failed request
+			promise.always(function(data) {
+				$('body').append('<p>I am always called, I promise.</p>')
+			});
+
+			// You can leave out the promise varible and chain everything
+			$.getJSON('http://hipsterjesus.com/api/')
+			.then(function(data) {
+				$('body').append(data.text);
+			});
+			// NOTE: with promises, the order of callbacks is respected.
+			// The cool thing about this is we can pass around our promise object 
+			// without worrying about when or how it resolves its value.
+
+			// The 'then' method (called only on success) allows us to modify the result of a promise
+			// and pass it to the next handler in the chain.
+			var hipsterJesus = {
+				myhtml: function() {
+					return $.getJSON('http://hipsterjesus.com/api/').then(function(data) {
+						return data.text;
+					});
+				},
+
+				paragraphs: function() {
+					return this.myhtml().then(function(html) {
+						newhtml = html.replace(/o/g,"GO").replace(/<p>/,"\n").replace(/<\/p>/,"");
+						$('body').append(newhtml);
+					});
+				}
+			};
+			hipsterJesus.paragraphs();
+
+			// Multiple callbacks
+			var firstPromise = $.get('http://example.com/first');
+			var secondPromise = $.get('http://example.com/second');
+			$.when(firstPromise, secondPromise).done(function(firstData, secondData) {
+				console.log("Blah");
+			});
+
+
+		</script>
+	</body>
+</html>

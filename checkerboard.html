@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Checkerboard</title>
+    <script src="jquery-1.9.1.min.js"> </script>
+    <style>
+      .container {
+        width: 500px;
+      }
+      .black {
+        background-color: black;
+        width: 100px;
+        height: 100px;
+      }
+      .white {
+        background-color: #f1f1f1;
+        width: 100px;
+        height: 100px;
+      }
+      .inner {
+        float: left;
+      }
+      .outer {
+        overflow: hidden;
+      }
+     
+    </style>
+     
+  </head>
+  <body>
+    <div class="container"></div>
+
+    <script type="text/javascript">
+      function checkerboard(sizeY,sizeX) {
+        for (var index=1; index<=sizeY; index++) {
+          var $row = $('<div class="outer"></div>');
+          createBoxes($row, index, sizeX);
+          $row.appendTo('.container');
+             
+        }
+      }
+      function createBoxes($row, rowIndex, sizeX) {
+        for (var columnIndex=1; columnIndex<=sizeX; columnIndex++) {
+            var $box = $('<div></div>');
+            $box.addClass('inner');
+            if (rowIndex%2==1) {
+              if (columnIndex%2==1) 
+                $box.addClass('black');
+              else 
+                $box.addClass('white');
+            } else {
+              if (columnIndex%2==1)
+                $box.addClass('white');
+              else
+                $box.addClass('black');
+            }
+            $row.append($box);
+          }
+      }
+      checkerboard(4,5);
+      </script>  
+  </body>
+</html>
