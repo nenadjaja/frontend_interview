@@ -1,8 +1,8 @@
 function findTwoMax(arr) {
-  if (arr.length == 0) 
+  if (arr.length === 0)
     return -1;
-  if (arr.length == 1) 
-    return [arr[0],-1]
+  if (arr.length === 1)
+    return [arr[0],-1];
   firstMax = arr[0];
   secondMax = arr[0];
   for (var i=1;i<arr.length;i++) {
@@ -14,7 +14,6 @@ function findTwoMax(arr) {
     }
   }
   return [firstMax,secondMax];
-
 }
 
 a1 = [0,4,7,99,2,0];
