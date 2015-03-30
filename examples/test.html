@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div>Test</div>
+	<script type="text/javascript">
+		function test() {
+			var result = 0;
+			for (var ind=0; ind<arguments.length; ind++) {
+				result += arguments[ind];
+			}
+			return result;
+		}
+		console.log(test(1,2,3));
+	</script>
+</body>
+</html>
