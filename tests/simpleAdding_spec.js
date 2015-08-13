@@ -1,4 +1,4 @@
-var simpleAdding = require("../examples/simpleAdding");
+var simpleAdding = require("../examples/coderbyte/simpleAdding");
 
 describe("simpleAdding#simpleAdding", function() {
 	it ("should return 15", function() {

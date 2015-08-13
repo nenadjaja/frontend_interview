@@ -1,5 +1,4 @@
 // write a function that calculates a factorial of the input number
-// preferably using recursion
 function factorial(num) {
 	if (num === 0) {
 		return 1;

@@ -1,5 +1,4 @@
-// simple methods to reverse a string or array of characters 
-// reverse a string
+// simple methods to reverse a string of characters 
 function reverseStr(s) {
   if (s ==" ")
     return "";
@@ -29,9 +28,9 @@ function anotherReverse(s) {
 }
 
 // test all 3 methods
-str1 = 'abracadabra'
-str3 = 'x'
-str2 = ''
+str1 = 'abracadabra';
+str3 = 'x';
+str2 = '';
 
 console.log(reverseStr(str1));
 console.log(reverseStr(str2));
