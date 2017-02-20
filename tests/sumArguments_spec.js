@@ -1,4 +1,4 @@
-var sumArguments = require("../examples/sumArguments");
+var sumArguments = require("../challenges/sumArguments");
 
 describe("sumArguments#sumArguments", function() {
 	it ("should return 12", function() {

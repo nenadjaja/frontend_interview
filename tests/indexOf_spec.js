@@ -1,4 +1,4 @@
-var indexOf = require("../examples/indexOf");
+var indexOf = require("../challenges/indexOf");
 
 describe("indexOf#stringSearch", function() {
 	it("should return 0", function() {

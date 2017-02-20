@@ -1,4 +1,4 @@
-// take string param and capitalize the first letter of each word
+// take a string param and capitalize the first letter of each word
 function letterCapitalize(text) {
 	if (text.length === 0)
 		return -1;
@@ -16,8 +16,8 @@ console.log(letterCapitalize("word"));
 // for jasmine tests
 exports.letterCapitalize = letterCapitalize;
 
-
-function titleCase(str) {
+// take a string param and capitalize the first letter of each word
+function letterCap(str) {
   var temp = str.split(" ");
   var result = "";
   temp.forEach(function(val) {
@@ -26,4 +26,7 @@ function titleCase(str) {
   return result.trim();
 }
 
-console.log(titleCase("I'm a little tea pot"));
+console.log(letterCap("I'm a little tea pot"));
+
+// for jasmine tests
+exports.letterCap = letterCap;

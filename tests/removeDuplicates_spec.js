@@ -1,4 +1,4 @@
-var removeDuplicates = require("../examples/removeDuplicates");
+var removeDuplicates = require("../challenges/removeDuplicates");
 
 describe("removeDuplicates#removeDuplicates", function() {
 	it("should return [1,2,3,4]", function() {

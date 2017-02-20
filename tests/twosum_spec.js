@@ -1,4 +1,4 @@
-var twosum = require('../examples/twosum');
+var twosum = require('../challenges/twosum');
 
 describe("twosum#twosum", function() {
 	it ("should return [3,5]", function() {

@@ -1,4 +1,4 @@
-var reverseString = require("../examples/reverseString");
+var reverseString = require("../challenges/reverseString");
 
 describe("reverseString#reverse1", function() {
 	it ("should return TNAHPELE", function() {

@@ -1,4 +1,4 @@
-var factorial = require("../examples/coderbyte/firstFactorial");
+var factorial = require("../challenges/coderbyte/firstFactorial");
 
 describe("factorial#factorial", function() {
 	it ("shold return 120", function() {

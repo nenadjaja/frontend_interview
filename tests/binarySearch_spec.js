@@ -1,4 +1,4 @@
-var binarySearch = require('../examples/binarySearch');
+var binarySearch = require('../challenges/binarySearch');
 
 describe("binarySearch#binarySearch", function() {
 	it ("should return 1", function() {

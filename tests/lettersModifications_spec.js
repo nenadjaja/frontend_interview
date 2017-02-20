@@ -1,5 +1,5 @@
-var letter_capitalize = require("../examples/coderbyte/letterCapitalize");
-var letter_changes = require("../examples/coderbyte/letterChanges");
+var letter_capitalize = require("../challenges/coderbyte/letterCapitalize");
+var letter_changes = require("../challenges/coderbyte/letterChanges");
 
 describe('letter_capitalize#letterCapitalize', function() {
 	it('should return Have A Good Day', function() {
@@ -17,6 +17,13 @@ describe('letter_capitalize#letterCapitalize', function() {
 		expect(result).toBe('Bye');
 	});
 
+});
+
+describe('letter_capitalize#letterCap', function() {
+	it('should return I\'m A Little Tea Pot', function() {
+		var result = letter_capitalize.letterCap("I'm a little tea pot");
+		expect(result).toBe('I\'m A Little Tea Pot');
+	})
 });
 
 describe('letter_changes#letterChanges', function() {

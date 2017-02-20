@@ -10,3 +10,5 @@ function palindrome(str) {
 
 var test = "0_0 (: /-\ :) 0-0";
 console.log(palindrome(test));
+
+exports.palindrome = palindrome;
